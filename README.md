@@ -4,7 +4,7 @@ This repository provides example scripts for sending text-based data from popula
 ## Setup
 1. clone the repo
 ```
-<Insert clone command here>
+get clone https://github.com/IP-Copilot/integration-examples.git
 ```
 2. install requirements
 ```

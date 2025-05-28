@@ -9,5 +9,6 @@ This folder shows how to send a payload  to IP Copilot's ingestion API endpoint 
   b. Replace <IPCOPILOT_ORG_API_KEY> with your IP Copilot generated API key
   c. Replace the values within the payload in the command with desired values
 2. copy and paste the command into your terminal
+3. Run command
 
 Upon successful send the response will contain a json formatted string with info about what was stored within the the IPCopilot system.
