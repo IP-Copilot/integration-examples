@@ -3,6 +3,15 @@ This script shows how to create a general payload to send to IP Copilot's ingest
 
 ## [IP Copilot Payload breakdown](../../README.md#IP-Copilot-Payload-breakdown)
 
+
+## Setup
+1. Create your `.env` file
+  ```
+  # IP Copilot API Config
+  IPCOPILOT_API_URL = <IPCOPILOT_API_URL>
+  IPCOPILOT_ORG_API_KEY = <IPCOPILOT_ORG_API_KEY>
+  ```
+
 ## Running the script
 Run command:
 `python simple_ingestion.py`
