@@ -1,8 +1,8 @@
 # simple integration
 This script shows how to create a general payload to send to IP Copilot's ingestion API endpoint
 
-## [IP Copilot Payload breakdown](../../README.md#IP-Copilot-Payload-breakdown)
-
+## IP Copilot Payload breakdown
+Please see the [top level README's section for more details](../../README.md#IP-Copilot-Payload-breakdown)
 
 ## Setup
 1. Create your `.env` file
