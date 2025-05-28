@@ -332,7 +332,6 @@ def create_ipcopilot_ingestion_payload_from_coda_page(
         "content_link": None,
         "discussion_link": page_dict["browserLink"],
         "context_link": doc_dict["browserLink"],
-        "response_flag": True,
         "created_at": updatedAt_dt_str_formatted,
     }
     print(f"Sending {page_dict['name']} ingestion payload to IP Copilot...")
