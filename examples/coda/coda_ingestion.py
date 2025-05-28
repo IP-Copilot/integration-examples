@@ -350,14 +350,13 @@ def send_to_ipcopilot_ingestion_endpoint(payloads: list[dict]):
     retries = 0
     n_payloads = len(payloads)
     default_retry_wait_seconds = 15
-    ingest_api_path =
     try:
         for idx, payload in enumerate(payloads):
             while response is None or (
                 response.status_code == 429 and IPCOPILOT_MAX_RETRIES > retries
             ):
                 response = requests.post(
-                    ingest_api_path,
+                    IPCOPILOT_API_URL,
                     json=payload,
                     headers=get_ipcopilot_headers(),
                     allow_redirects=False,
@@ -413,7 +412,7 @@ def validate_args_and_env():
 
 def main():
     """
-    Pulls page data from conda and sends it to IP Copilot's Ingest API
+    Pulls page data from coda and sends it to IP Copilot's Ingest API
         for processing
     """
     validate_args_and_env()
@@ -492,4 +491,5 @@ if __name__ == "__main__":
         CODA_API_TOKEN = _args.coda_api_token
     if _args.ipcopilot_api_url:
         IPCOPILOT_API_URL = _args.ipcopilot_api_url
+
     main()

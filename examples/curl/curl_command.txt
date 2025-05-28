@@ -1,0 +1,18 @@
+curl -X POST <IPCOPILOT_API_URL> \
+  -H "Content-Type: application/json" \
+  -H "authorization: <IPCOPILOT_ORG_API_KEY>" \
+  -d '[
+    {
+      "author": "fake_user_id",
+      "source": "fake_source",
+      "email": "fake_email@email.com",
+      "comment_text": "fake comment test",
+      "comment_link": "https://fake-url.com",
+      "content_title": "",
+      "content_link": null,
+      "discussion_link": null,
+      "context_link": "https://another-fake-url.com",
+      "response_flag": true,
+      "created_at": <datetime in "%Y-%m-%d %H:%M:%S" format>
+    }
+  ]'
