@@ -139,8 +139,6 @@ if __name__ == "__main__":
     # Use argparse values if they are passed in, otherwise use environment variables
     if _args.ipcopilot_org_api_key:
         IPCOPILOT_ORG_API_KEY = _args.ipcopilot_org_api_key
-    if _args.coda_api_token:
-        CODA_API_TOKEN = _args.coda_api_token
     if _args.ipcopilot_ingestion_endpoint:
         IPCOPILOT_INGESTION_ENDPOINT = _args.ipcopilot_ingestion_endpoint
 
