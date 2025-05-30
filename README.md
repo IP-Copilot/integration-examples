@@ -1,12 +1,12 @@
-# integration-examples
+# Integration Examples
 This repository provides example scripts for sending text-based data from popular tools to a IP Copilot's ingestion API endpoint. These scripts are designed to support workflows for capturing ideas—helping your organization foster a culture of continuous innovation.
 
 ## Setup
-1. clone the repo
+1. Clone the repo
 ```
 get clone https://github.com/IP-Copilot/integration-examples.git
 ```
-2. install requirements
+2. Install requirements
 ```
 pip install requirements.txt
 ```
