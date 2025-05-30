@@ -41,7 +41,6 @@ payloads = [
         "content_link": None,
         "discussion_link": None,
         "context_link": "https://another-fake-url.com",
-        "response_flag": True,
         "created_at": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     },
 ]
