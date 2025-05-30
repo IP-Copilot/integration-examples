@@ -6,11 +6,18 @@ import time
 from typing import Generator
 
 import requests
+from dotenv import load_dotenv
+
+
+# setup environment
+load_dotenv()
 
 
 # ipcopilot api params
 IPCOPILOT_ORG_API_KEY = os.environ.get("IPCOPILOT_ORG_API_KEY", None)
-IPCOPILOT_API_URL = os.environ.get("IPCOPILOT_API_URL", None)
+IPCOPILOT_INGESTION_ENDPOINT = os.environ.get(
+    "IPCOPILOT_INGESTION_ENDPOINT", None
+)
 IPCOPILOT_MAX_RETRIES = 5
 
 
@@ -34,7 +41,7 @@ def get_coda_headers():
 def get_ipcopilot_headers():
     return {
         "Content-Type": "application/json",  # Tell the server to expect JSON
-        "authorization": f"Bearer {IPCOPILOT_ORG_API_KEY}",
+        "Authorization": f"Bearer {IPCOPILOT_ORG_API_KEY}",
     }
 
 
@@ -313,7 +320,7 @@ def create_ipcopilot_ingestion_payload_from_coda_page(
         content (str): exported page content from codas export page process
 
     Returns:
-        dict: dict in the format expected by IP Copilot's ingest endpoint
+        dict: IP Copilot Ingestion API payload format
     """
     print(f"Creating {page_dict['name']}'s ingestion payload...")
     updatedAt_dt = datetime.datetime.strptime(
@@ -343,7 +350,7 @@ def send_to_ipcopilot_ingestion_endpoint(payloads: list[dict]):
 
     Args:
         payloads (list[dict]): The list of formatted payloads containing
-            ingestable markdown for idea extraction
+            ingestible markdown for idea extraction
     """
     response = None
     retries = 0
@@ -355,7 +362,7 @@ def send_to_ipcopilot_ingestion_endpoint(payloads: list[dict]):
                 response.status_code == 429 and IPCOPILOT_MAX_RETRIES > retries
             ):
                 response = requests.post(
-                    IPCOPILOT_API_URL,
+                    IPCOPILOT_INGESTION_ENDPOINT,
                     json=payload,
                     headers=get_ipcopilot_headers(),
                     allow_redirects=False,
@@ -398,8 +405,8 @@ def validate_args_and_env():
         missing_values.append("IPCOPILOT_ORG_API_KEY")
     if CODA_API_TOKEN is None:
         missing_values.append("CODA_API_TOKEN")
-    if IPCOPILOT_API_URL is None:
-        missing_values.append("IPCOPILOT_API_URL")
+    if IPCOPILOT_INGESTION_ENDPOINT is None:
+        missing_values.append("IPCOPILOT_INGESTION_ENDPOINT")
 
     if missing_values:
         raise ValueError(
@@ -411,7 +418,7 @@ def validate_args_and_env():
 
 def main():
     """
-    Pulls page data from coda and sends it to IP Copilot's Ingest API
+    Pulls page data from coda and sends it to IP Copilot's Ingestion Endpoint
         for processing
     """
     validate_args_and_env()
@@ -472,12 +479,12 @@ if __name__ == "__main__":
         ),
     )
     _parser.add_argument(
-        "--ipcopilot-api-url",
+        "--ipcopilot-ingestion-endpoint",
         type=str,
         default=None,
         help=(
             "ipcopilot api url, alternatively can be set with "
-            "env IPCOPILOT_API_URL"
+            "env IPCOPILOT_INGESTION_ENDPOINT"
         ),
     )
 
@@ -488,7 +495,7 @@ if __name__ == "__main__":
         IPCOPILOT_ORG_API_KEY = _args.ipcopilot_org_api_key
     if _args.coda_api_token:
         CODA_API_TOKEN = _args.coda_api_token
-    if _args.ipcopilot_api_url:
-        IPCOPILOT_API_URL = _args.ipcopilot_api_url
+    if _args.ipcopilot_ingestion_endpoint:
+        IPCOPILOT_INGESTION_ENDPOINT = _args.ipcopilot_ingestion_endpoint
 
     main()

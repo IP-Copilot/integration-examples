@@ -1,6 +1,8 @@
-curl -X POST <IPCOPILOT_API_URL> \
+#!/bin/bash
+
+curl -X POST <IPCOPILOT_INGESTION_ENDPOINT> \
   -H "Content-Type: application/json" \
-  -H "authorization: <IPCOPILOT_ORG_API_KEY>" \
+  -H "Authorization: Bearer <IPCOPILOT_ORG_API_KEY>" \
   -d '[
     {
       "author": "fake_user_id",
@@ -12,7 +14,6 @@ curl -X POST <IPCOPILOT_API_URL> \
       "content_link": null,
       "discussion_link": null,
       "context_link": "https://another-fake-url.com",
-      "response_flag": true,
       "created_at": <datetime in "%Y-%m-%d %H:%M:%S" format>
     }
   ]'
