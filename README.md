@@ -1,4 +1,4 @@
-# integration-examples
+# Integration Examples
 This repository provides example scripts for sending text-based data from popular tools to IP Copilot's Ingestion Endpoint. These scripts are designed to support workflows for capturing ideas—helping your organization foster a culture of continuous innovation.
 
 ## Setup
