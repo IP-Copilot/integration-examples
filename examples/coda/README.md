@@ -2,6 +2,13 @@
 This folder provides examples of pulling data from Coda, preparing it for ingestion, and sending it to the IP Copilot Ingestion API.
 
 ## Setup
+
+### Dependencies
+coda integration requires:
+
+- Python (>= 3.10)
+
+### Installation
 1. Install requirements
   ```bash
   pip install requirements.txt

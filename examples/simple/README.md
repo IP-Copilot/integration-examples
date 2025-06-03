@@ -1,10 +1,17 @@
 # simple integration
 This folder provides a generic python script to send payload to IP Copilot's Ingestion Endpoint.
 
-## IP Copilot Payload breakdown
-Please see the [top level README's section for more details](../../README.md#IP-Copilot-Payload-breakdown)
+## IP Copilot Payload Breakdown
+Please see the [top level README's section for more details](../../README.md#IP-Copilot-Payload-Breakdown)
 
 ## Setup
+
+### Dependencies
+simple integration requires:
+
+- Python (>= 3.10)
+
+### Installation
 1. Install requirements
   ```bash
   pip install requirements.txt

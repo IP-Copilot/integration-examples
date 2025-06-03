@@ -1,8 +1,8 @@
 # curl example
 This folder shows how to send a payload to IP Copilot's Ingestion Endpoint using curl.
 
-## IP Copilot Payload breakdown
-Please see the [top level README's section for more details](../../README.md#IP-Copilot-Payload-breakdown)
+## IP Copilot Payload Breakdown
+Please see the [top level README's section for more details](../../README.md#IP-Copilot-Payload-Breakdown)
 
 ## Running the commnd
 1. Replace values in the example curl command in `curl_command.sh`
