@@ -1,4 +1,4 @@
-# Coda Examples
+# Coda Integration Examples
 This folder provides examples of pulling data from Coda, preparing it for ingestion, and sending it to the IP Copilot Ingestion API.
 
 ## Setup
