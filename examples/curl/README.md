@@ -1,4 +1,4 @@
-# curl example
+# curl Examples
 This folder shows how to send a payload to IP Copilot's Ingestion Endpoint using curl.
 
 ## IP Copilot Payload Breakdown

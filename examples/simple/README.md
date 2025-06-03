@@ -1,4 +1,4 @@
-# simple integration
+# Simple Examples
 This folder provides a generic python script to send payload to IP Copilot's Ingestion Endpoint.
 
 ## IP Copilot Payload Breakdown
@@ -7,7 +7,7 @@ Please see the [top level README's section for more details](../../README.md#IP-
 ## Setup
 
 ### Dependencies
-simple integration requires:
+Simple example requires:
 
 - Python (>= 3.10)
 

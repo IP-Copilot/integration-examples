@@ -2,7 +2,7 @@
 This repository provides example scripts for sending text-based data from popular tools to IP Copilot's Ingestion Endpoint. These scripts are designed to support workflows for capturing ideas—helping your organization foster a culture of continuous innovation.
 
 ## Setup
-1. clone the repo
+1. Clone the repo
 
 ```bash
 git clone https://github.com/IP-Copilot/integration-examples.git
@@ -10,7 +10,7 @@ git clone https://github.com/IP-Copilot/integration-examples.git
 
 2. Follow the instruction of the README.md file of your required application integration
   * [Simple example README](examples/simple/README.md)
-  * [Curl example README](examples/curl/README.md)
+  * [curl example README](examples/curl/README.md)
   * [Coda example README](examples/coda/README.md)
 
 ## IP Copilot Payload Breakdown
