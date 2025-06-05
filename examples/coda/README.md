@@ -4,7 +4,7 @@ This folder provides examples of pulling data from Coda, preparing it for ingest
 ## Setup
 
 ### Dependencies
-Coda exmaple requires:
+Coda example requires:
 
 - Python (>= 3.10)
 

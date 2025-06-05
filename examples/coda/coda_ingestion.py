@@ -1,5 +1,4 @@
 import argparse
-import copy
 import datetime
 import os
 import time
@@ -218,10 +217,15 @@ def iter_content_metadata_pulled_from_coda(
         Generator[dict[any]]: iterable of coda item dict in responses
             from endpoints
     """
-    headers = copy.deepcopy(get_coda_headers())
-    headers["pageToken"] = None
+    headers = get_coda_headers()
+    params = {}
     while True:
-        response = requests.get(url, headers=headers, allow_redirects=False)
+        response = requests.get(
+            url,
+            headers=headers,
+            params=params,
+            allow_redirects=False,
+        )
         if response.status_code != 200:
             print(f"Failure pulling docs from {url}: {response.status_code}")
             break
@@ -230,8 +234,8 @@ def iter_content_metadata_pulled_from_coda(
         for item in response_dict["items"]:
             yield item
 
-        headers["pageToken"] = response_dict.get("nextPageToken")
-        if not headers["pageToken"]:
+        params["pageToken"] = response_dict.get("nextPageToken")
+        if not params["pageToken"]:
             break
 
 
@@ -273,7 +277,7 @@ def iter_all_processable_pages_in_doc(
     """Creates a generator for the list pages endpoint of coda
 
     Args:
-        doc (dicstrt): The id of the doc from which pages are listed
+        doc_id (str): The id of the doc from which pages are listed
 
     Yields:
         Generator[dict[any]]: iterable of coda page dicts in responses
@@ -341,7 +345,6 @@ def create_ipcopilot_ingestion_payload_from_coda_page(
         "context_link": doc_dict["browserLink"],
         "created_at": updatedAt_dt_str_formatted,
     }
-    print(f"Sending {page_dict['name']} ingestion payload to IP Copilot...")
     return nlp_payload
 
 
@@ -352,12 +355,12 @@ def send_to_ipcopilot_ingestion_endpoint(payloads: list[dict]):
         payloads (list[dict]): The list of formatted payloads containing
             ingestible markdown for idea extraction
     """
-    response = None
-    retries = 0
     n_payloads = len(payloads)
     default_retry_wait_seconds = 15
     try:
         for idx, payload in enumerate(payloads):
+            response = None
+            retries = 0
             while response is None or (
                 response.status_code == 429 and IPCOPILOT_MAX_RETRIES > retries
             ):
@@ -441,6 +444,9 @@ def main():
             if page_content is not None:
                 nlp_payload = create_ipcopilot_ingestion_payload_from_coda_page(
                     page_dict=page, doc_dict=doc, content=page_content
+                )
+                print(
+                    f"Sending {page['name']} ingestion payload to IP Copilot..."
                 )
                 send_to_ipcopilot_ingestion_endpoint(payloads=[nlp_payload])
                 total_pages_processed += 1
